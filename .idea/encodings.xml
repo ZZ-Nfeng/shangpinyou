@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/spy-parrent/common/common-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/common/service-util/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/service/service-acl/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/service/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spy-parrent/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
