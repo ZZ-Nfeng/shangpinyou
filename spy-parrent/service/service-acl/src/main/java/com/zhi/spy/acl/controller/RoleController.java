@@ -17,7 +17,7 @@ import java.util.List;
 @Api(tags = "角色接口")
 @RestController
 @RequestMapping("/admin/acl/role")
-//@CrossOrigin //跨域
+@CrossOrigin //跨域
 public class RoleController {
 
     //注入service
@@ -30,13 +30,10 @@ public class RoleController {
     public Result pageList(@PathVariable Long current,
                            @PathVariable Long limit,
                            RoleQueryVo roleQueryVo) {
-        //1 创建page对象，传递当前页和每页记录数
         // current：当前页
         // limit: 每页显示记录数
-        Page<Role> pageParam = new Page<>(current,limit);
-
         //2 调用service方法实现条件分页查询，返回分页对象
-        IPage<Role> pageModel = roleService.selectRolePage(pageParam,roleQueryVo);
+        Page<Role> pageModel = roleService.selectRolePage(current,limit,roleQueryVo);
 
         return Result.ok(pageModel);
     }

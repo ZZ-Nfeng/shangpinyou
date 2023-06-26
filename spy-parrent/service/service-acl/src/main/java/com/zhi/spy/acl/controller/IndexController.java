@@ -4,10 +4,7 @@ package com.zhi.spy.acl.controller;
 import com.zhi.spy.common.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +12,7 @@ import java.util.Map;
 @Api(tags = "登录接口")
 @RestController
 @RequestMapping("/admin/acl/index")
-//@CrossOrigin //跨域
+@CrossOrigin //跨域
 public class IndexController {
 
     //   http://localhost:8201/admin/acl/index/login

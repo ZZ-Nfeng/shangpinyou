@@ -28,28 +28,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
     @Autowired
     private AdminRoleService adminRoleService;
 
-    //1 角色列表（条件分页查询）
-    @Override
-    public IPage<Role> selectRolePage(Page<Role> pageParam,
-                                      RoleQueryVo roleQueryVo) {
-        //获取条件值
-        String roleName = roleQueryVo.getRoleName();
 
-        //创建mp条件对象
-        LambdaQueryWrapper<Role> wrapper = new LambdaQueryWrapper<>();
 
-        //判断条件值是否为空，不为封装查询条件
-        // rolename like ?
-        if(!StringUtils.isEmpty(roleName)) {
-            wrapper.like(Role::getRoleName,roleName);
-        }
-
-        //调用方法实现条件分页查询
-        IPage<Role> rolePage = baseMapper.selectPage(pageParam, wrapper);
-
-        //返回分页对象
-        return rolePage;
-    }
 
     //获取所有角色，和根据用户id查询用户分配角色列表
     @Override
@@ -120,5 +100,21 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         }
         //调用方法添加
         adminRoleService.saveBatch(list);
+    }
+
+    @Override
+    public Page<Role> selectRolePage(Long current, Long limit, RoleQueryVo roleQueryVo) {
+        Page<Role> rolePage = new Page<>(current, limit);
+
+
+        LambdaQueryWrapper<Role> queryWrapper = new LambdaQueryWrapper<>();
+
+        queryWrapper.like(
+                !StringUtils.isEmpty(roleQueryVo.getRoleName()),
+                Role::getRoleName,
+                roleQueryVo.getRoleName());
+
+        return this.page(rolePage, queryWrapper);
+
     }
 }
