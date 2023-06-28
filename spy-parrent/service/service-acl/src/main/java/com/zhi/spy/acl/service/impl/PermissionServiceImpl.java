@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements PermissionService {
@@ -22,8 +24,24 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
                 baseMapper.selectList(null);
 
         //2 转换要求数据格式
-        List<Permission> result = PermissionHelper.buildPermission(allPermissionList);
-        return result;
+//        List<Permission> result = PermissionHelper.buildPermission(allPermissionList);
+//        return result;
+
+        List<Permission> collect = allPermissionList.stream().filter(t -> t.getPid() == 0).map(m -> {
+            m.setChildren(getChilden(m, allPermissionList));
+            return m;
+        }).collect(Collectors.toList());
+
+        return collect;
+    }
+
+    private List<Permission> getChilden(Permission root, List<Permission> allPermissionList) {
+        return allPermissionList.stream()
+                .filter(t ->{return Objects.equals(t.getPid(),root.getId());})
+                .map(m1 -> {
+                    m1.setChildren(getChilden(m1, allPermissionList));
+                    return m1;})
+                .collect(Collectors.toList());
     }
 
     //递归删除菜单
