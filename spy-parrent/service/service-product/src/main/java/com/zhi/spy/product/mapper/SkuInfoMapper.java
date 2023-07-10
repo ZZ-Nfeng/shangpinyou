@@ -3,6 +3,7 @@ package com.zhi.spy.product.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhi.spy.model.product.SkuInfo;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Param;
  * @author atguigu
  * @since 2023-04-04
  */
+@Mapper
 public interface SkuInfoMapper extends BaseMapper<SkuInfo> {
 
     //解锁库存

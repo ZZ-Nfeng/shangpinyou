@@ -3,6 +3,7 @@ package com.zhi.spy.product.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zhi.spy.model.product.Attr;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -12,6 +13,7 @@ import com.zhi.spy.model.product.Attr;
  * @author atguigu
  * @since 2023-04-04
  */
+@Mapper
 public interface AttrMapper extends BaseMapper<Attr> {
 
 }
