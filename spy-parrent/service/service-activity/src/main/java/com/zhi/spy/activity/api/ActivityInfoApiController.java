@@ -1,11 +1,12 @@
 package com.zhi.spy.activity.api;
 
-import com.atguigu.ssyx.activity.service.ActivityInfoService;
-import com.atguigu.ssyx.activity.service.CouponInfoService;
-import com.atguigu.ssyx.model.activity.CouponInfo;
-import com.atguigu.ssyx.model.order.CartInfo;
-import com.atguigu.ssyx.vo.order.CartInfoVo;
-import com.atguigu.ssyx.vo.order.OrderConfirmVo;
+
+import com.zhi.spy.activity.service.ActivityInfoService;
+import com.zhi.spy.activity.service.CouponInfoService;
+import com.zhi.spy.model.activity.CouponInfo;
+import com.zhi.spy.model.order.CartInfo;
+import com.zhi.spy.vo.order.CartInfoVo;
+import com.zhi.spy.vo.order.OrderConfirmVo;
 import io.swagger.annotations.ApiOperation;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
