@@ -1,4 +1,4 @@
-package com.zhi.spy.product.constant;
+package com.zhi.spy.mq.constant;
 
 public class MqConst {
     /**

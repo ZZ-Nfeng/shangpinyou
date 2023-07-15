@@ -1,27 +1,27 @@
 package com.zhi.spy.product.service.impl;
 
 
+
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhi.spy.common.constant.RedisConst;
 import com.zhi.spy.common.exception.SsyxException;
 import com.zhi.spy.common.result.ResultCodeEnum;
+import com.zhi.spy.model.acl.Role;
 import com.zhi.spy.model.product.SkuAttrValue;
 import com.zhi.spy.model.product.SkuImage;
 import com.zhi.spy.model.product.SkuInfo;
 import com.zhi.spy.model.product.SkuPoster;
-
 import com.zhi.spy.product.constant.MqConst;
 import com.zhi.spy.product.mapper.SkuInfoMapper;
 import com.zhi.spy.product.service.*;
 import com.zhi.spy.vo.product.SkuInfoQueryVo;
 import com.zhi.spy.vo.product.SkuInfoVo;
 import com.zhi.spy.vo.product.SkuStockLockVo;
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -35,6 +35,7 @@ import java.util.List;
 
 
 @Service
+@Slf4j
 public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> implements SkuInfoService {
 
     //sku图片
@@ -186,17 +187,20 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
             skuInfo.setPublishStatus(status);
             baseMapper.updateById(skuInfo);
             //整合mq把数据同步到es里面
-//            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
-//                                      MqConst.ROUTING_GOODS_UPPER,
-//                                      skuId);
+//
+            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
+                                      MqConst.ROUTING_GOODS_UPPER,
+                    skuId);
+            log.info("上架消息发送成功",skuId);
         } else { //下架
             SkuInfo skuInfo = baseMapper.selectById(skuId);
             skuInfo.setPublishStatus(status);
             baseMapper.updateById(skuInfo);
             //整合mq把数据同步到es里面
-//            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
-//                                      MqConst.ROUTING_GOODS_LOWER,
-//                                      skuId);
+            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
+                                      MqConst.ROUTING_GOODS_LOWER,
+                                      skuId);
+            log.info("下架消息发送成功",skuId);
         }
     }
 

@@ -3,7 +3,7 @@ package com.zhi.spy.product.receiver;
 
 
 import com.rabbitmq.client.Channel;
-import com.zhi.spy.mq.constant.MqConst;
+import com.zhi.spy.product.constant.MqConst;
 import com.zhi.spy.product.service.SkuInfoService;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;

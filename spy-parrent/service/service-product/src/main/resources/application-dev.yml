@@ -13,7 +13,6 @@ spring:
     url: jdbc:mysql://120.24.225.180:3306/shequ-product?characterEncoding=utf-8&useSSL=false
     username: root
     password: zhangzhi@888
-
   rabbitmq:
     host: 120.24.225.180
     port: 5672
@@ -41,6 +40,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
 aliyun:
   endpoint: oss-cn-shenzhen.aliyuncs.com
   keyid: LTAI5tKT61eVDbhKssyt1vcp
