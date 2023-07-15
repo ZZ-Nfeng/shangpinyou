@@ -1,5 +1,4 @@
-package com.zhi.spy.search.client;
-
+package com.zhi.spy.client;
 
 import com.zhi.spy.model.activity.CouponInfo;
 import com.zhi.spy.model.order.CartInfo;

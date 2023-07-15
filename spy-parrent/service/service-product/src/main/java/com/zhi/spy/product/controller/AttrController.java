@@ -5,16 +5,17 @@ package com.zhi.spy.product.controller;
 import com.zhi.spy.common.result.Result;
 import com.zhi.spy.model.product.Attr;
 import com.zhi.spy.product.service.AttrService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@Api(value = "Attr管理", tags = "平台属性管理")
 @RestController
 @RequestMapping("/admin/product/attr")
-//@CrossOrigin
+@CrossOrigin
 public class AttrController {
 
     @Autowired

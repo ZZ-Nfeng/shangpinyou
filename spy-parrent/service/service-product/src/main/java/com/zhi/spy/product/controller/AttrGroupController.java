@@ -8,15 +8,16 @@ import com.zhi.spy.common.result.Result;
 import com.zhi.spy.model.product.AttrGroup;
 import com.zhi.spy.product.service.AttrGroupService;
 import com.zhi.spy.vo.product.AttrGroupQueryVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Api(value = "AttrGroup管理", tags = "平台属性分组管理")
 @RestController
 @RequestMapping("/admin/product/attrGroup")
-//@CrossOrigin
+@CrossOrigin
 public class AttrGroupController {
 
     @Autowired

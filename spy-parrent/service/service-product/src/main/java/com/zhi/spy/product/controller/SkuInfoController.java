@@ -9,7 +9,9 @@ import com.zhi.spy.model.product.SkuInfo;
 import com.zhi.spy.product.service.SkuInfoService;
 import com.zhi.spy.vo.product.SkuInfoQueryVo;
 import com.zhi.spy.vo.product.SkuInfoVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/product/skuInfo")
-//@CrossOrigin
+@CrossOrigin
+@Api(value = "SkuInfo管理", tags = "商品Sku管理")
 public class SkuInfoController {
 
     @Autowired
@@ -28,14 +31,19 @@ public class SkuInfoController {
 //    url: `${api_name}/${page}/${limit}`,
 //    method: 'get',
 //    params: searchObj
-    @ApiOperation("sku列表")
+    @ApiOperation(value = "获取sku分页列表")
     @GetMapping("{page}/{limit}")
-    public Result list(@PathVariable Long page,
-                       @PathVariable Long limit,
-                       SkuInfoQueryVo skuInfoQueryVo) {
-        Page<SkuInfo> pageParam = new Page<>(page,limit);
-        IPage<SkuInfo> pageModel =
-                skuInfoService.selectPageSkuInfo(pageParam,skuInfoQueryVo);
+    public Result<IPage<SkuInfo>> index(
+            @ApiParam(name = "page", value = "当前页码", required = true)
+            @PathVariable Long page,
+
+            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @PathVariable Long limit,
+
+            @ApiParam(name = "skuInfoQueryVo", value = "查询对象", required = false)
+            SkuInfoQueryVo skuInfoQueryVo) {
+        Page<SkuInfo> pageParam = new Page<>(page, limit);
+        IPage<SkuInfo> pageModel = skuInfoService.selectPageSkuInfo(pageParam, skuInfoQueryVo);
         return Result.ok(pageModel);
     }
 

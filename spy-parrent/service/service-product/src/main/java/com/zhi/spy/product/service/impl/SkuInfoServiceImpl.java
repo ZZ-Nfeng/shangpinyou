@@ -13,13 +13,10 @@ import com.zhi.spy.model.product.SkuAttrValue;
 import com.zhi.spy.model.product.SkuImage;
 import com.zhi.spy.model.product.SkuInfo;
 import com.zhi.spy.model.product.SkuPoster;
-import com.zhi.spy.mq.constant.MqConst;
-import com.zhi.spy.mq.service.RabbitService;
+
+import com.zhi.spy.product.constant.MqConst;
 import com.zhi.spy.product.mapper.SkuInfoMapper;
-import com.zhi.spy.product.service.SkuAttrValueService;
-import com.zhi.spy.product.service.SkuImageService;
-import com.zhi.spy.product.service.SkuInfoService;
-import com.zhi.spy.product.service.SkuPosterService;
+import com.zhi.spy.product.service.*;
 import com.zhi.spy.vo.product.SkuInfoQueryVo;
 import com.zhi.spy.vo.product.SkuInfoVo;
 import com.zhi.spy.vo.product.SkuStockLockVo;
@@ -32,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +49,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
     @Autowired
     private SkuPosterService skuPosterService;
 
-    @Autowired
+    @Resource
     private RabbitService rabbitService;
 
     @Autowired
@@ -188,17 +186,17 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
             skuInfo.setPublishStatus(status);
             baseMapper.updateById(skuInfo);
             //整合mq把数据同步到es里面
-            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
-                                      MqConst.ROUTING_GOODS_UPPER,
-                                      skuId);
+//            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
+//                                      MqConst.ROUTING_GOODS_UPPER,
+//                                      skuId);
         } else { //下架
             SkuInfo skuInfo = baseMapper.selectById(skuId);
             skuInfo.setPublishStatus(status);
             baseMapper.updateById(skuInfo);
             //整合mq把数据同步到es里面
-            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
-                                      MqConst.ROUTING_GOODS_LOWER,
-                                      skuId);
+//            rabbitService.sendMessage(MqConst.EXCHANGE_GOODS_DIRECT,
+//                                      MqConst.ROUTING_GOODS_LOWER,
+//                                      skuId);
         }
     }
 
@@ -328,10 +326,10 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
     private void checkLock(SkuStockLockVo skuStockLockVo) {
         //获取锁
         //公平锁
-        RLock rLock =
-                this.redissonClient.getFairLock(RedisConst.SKUKEY_PREFIX + skuStockLockVo.getSkuId());
-        //加锁
-        rLock.lock();
+//        RLock rLock =
+//                this.redissonClient.getFairLock(RedisConst.SKUKEY_PREFIX + skuStockLockVo.getSkuId());
+//        //加锁
+//        rLock.lock();
 
         try {
             //验证库存
@@ -351,7 +349,7 @@ public class SkuInfoServiceImpl extends ServiceImpl<SkuInfoMapper, SkuInfo> impl
             }
         } finally {
             //解锁
-            rLock.unlock();
+//            rLock.unlock();
         }
     }
 

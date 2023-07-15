@@ -8,6 +8,7 @@ import com.zhi.spy.common.result.Result;
 import com.zhi.spy.model.product.Category;
 import com.zhi.spy.product.service.CategoryService;
 import com.zhi.spy.vo.product.CategoryQueryVo;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.management.relation.RelationSupport;
 import java.util.List;
 
-
+@Api(value = "Category管理", tags = "商品分类管理")
 @RestController
 @RequestMapping("/admin/product/category")
 //@CrossOrigin

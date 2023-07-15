@@ -1,11 +1,11 @@
-package com.zhi.spy.search.client;
-
+package com.zhi.spy.client;
 
 import com.zhi.spy.model.product.Category;
 import com.zhi.spy.model.product.SkuInfo;
 import com.zhi.spy.vo.product.SkuInfoVo;
 import com.zhi.spy.vo.product.SkuStockLockVo;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
+/**
+ * @author Laurus
+ * @Description
+ * @ClassName ProductFeignClient
+ * @date 2023-07-15 16:02
+ */
 @FeignClient(value = "service-product")
 public interface ProductFeignClient {
 

@@ -1,15 +1,12 @@
-package com.zhi.spy.mq.service;
+package com.zhi.spy.product.service;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
 
-@Component
+@Service
 public class RabbitService {
 
     @Autowired

@@ -1,4 +1,4 @@
-package com.zhi.spy.mq.config;
+package com.zhi.spy.product.config;
 
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.connection.CorrelationData;

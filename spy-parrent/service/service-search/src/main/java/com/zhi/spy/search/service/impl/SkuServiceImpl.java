@@ -1,13 +1,13 @@
 package com.zhi.spy.search.service.impl;
 
 
+import com.zhi.spy.client.ActivityFeignClient;
+import com.zhi.spy.client.ProductFeignClient;
 import com.zhi.spy.common.auth.AuthContextHolder;
 import com.zhi.spy.enums.SkuType;
 import com.zhi.spy.model.product.Category;
 import com.zhi.spy.model.product.SkuInfo;
 import com.zhi.spy.model.search.SkuEs;
-import com.zhi.spy.search.client.ActivityFeignClient;
-import com.zhi.spy.search.client.ProductFeignClient;
 import com.zhi.spy.search.repository.SkuRepository;
 import com.zhi.spy.search.service.SkuService;
 import com.zhi.spy.vo.search.SkuEsQueryVo;
@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
