@@ -1,0 +1,10 @@
+package com.zhi.spy.user.mapper;
+
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhi.spy.enums.user.UserDelivery;
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface UserDeliveryMapper extends BaseMapper<UserDelivery> {
+}

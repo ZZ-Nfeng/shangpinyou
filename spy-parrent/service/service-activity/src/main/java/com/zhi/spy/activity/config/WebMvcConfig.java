@@ -1,4 +1,4 @@
-package com.zhi.spy.sys.config;
+package com.zhi.spy.activity.config;
 
 
 import org.springframework.context.annotation.Configuration;
