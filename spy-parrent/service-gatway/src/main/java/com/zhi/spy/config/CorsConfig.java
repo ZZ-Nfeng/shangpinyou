@@ -9,7 +9,6 @@ import org.springframework.web.util.pattern.PathPatternParser;
 
 @Configuration
 public class CorsConfig {
-
     @Bean
     public CorsWebFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
